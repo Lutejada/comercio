@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Path} from '../../config';
 
+import { CategoriesService } from '../../services/categories.service';
+
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,9 +11,20 @@ import { Path} from '../../config';
 })
 export class HeaderComponent implements OnInit {
     path:String = Path.url;
-  constructor() { }
+    categories:object=null;
+
+  constructor(private categoriesService:CategoriesService ) { }
 
   ngOnInit(): void {
+
+      // Tomamos la data de las categorias
+    this.categoriesService.getData()
+        .subscribe(resp =>{
+
+          this.categories = resp
+
+        }) 
+
   }
 
 }

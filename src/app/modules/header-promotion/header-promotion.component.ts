@@ -11,11 +11,14 @@ import { ProdutsService } from '../../services/produts.service';
 export class HeaderPromotionComponent implements OnInit {
   path:String = Path.url;
   top_banner:object = null;
+  preload:boolean = false;
 
   constructor(private produtsService:ProdutsService) { }
 
   ngOnInit(): void {
 
+    this.preload=true;
+    
     this.produtsService.getData()
       .subscribe(resp => {
         console.log("resp", resp);
@@ -34,6 +37,8 @@ export class HeaderPromotionComponent implements OnInit {
         // Devolvemos a la vista un banner aleatorio
         this.top_banner = JSON.parse(resp[Object.keys(resp)[index]].top_banner);
         console.log("this.top_banner",this.top_banner);
+
+        this.preload= false;
       })
   }
 

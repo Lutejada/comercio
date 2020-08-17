@@ -2,7 +2,7 @@
 	Header Promotion
 	======================================-->
 
-<div class="ps-block--promotion-header bg--cover" style="background: url({{path}}img/banner/top/{{top_banner['IMG tag']}});">
+<div *ngIf="!preload && top_banner !== null" class="ps-block--promotion-header bg--cover" style="background: url({{path}}img/banner/top/{{top_banner['IMG tag']}});">
     <div class="container">
         <div class="ps-block__left">
             <h3>{{top_banner['H3 tag']}}</h3>
@@ -15,4 +15,13 @@
             <p>{{top_banner['P2 tag']}}<span>{{top_banner['Span tag']}}</span></p>
         </div><a class="ps-btn ps-btn--sm" href="#">{{top_banner['Button tag']}}</a>
     </div>
+</div>
+
+<!--=====================================
+	          Pre Load
+    ======================================-->
+
+<div *ngIf="preload && top_banner == null" class="d-flex justify-content-center">
+    <div class="spinner-border text-muted my-3 my-3"></div>
+
 </div>
